@@ -9,13 +9,23 @@ const Repositories = ({repositories, onDeleteRepo, onNewRepo}) => {
     <div className="repositories">
         <h2 className="title">Repositórios</h2>
         <ul className="list">
-          <li className="item">
-            <div className="info">
-              <div className="owner">facebook</div>
-              <div className="name">react</div>
-            </div>
-            <button onClick={() => onDeleteRepo(null)}>Apagar</button>
+          {
+            repositories.map((repository) => (
+            <li className="item" key={repository._id}>
+              <div className="info">
+                <div className="owner">
+                  {repository.name.substring(0, repository.name.indexOf('/'))}
+                </div>
+                <div className="name">
+                  {repository.name.substring(repository.name.indexOf('/')+ 1 )}
+                </div>
+              </div>
+            <button onClick={() => onDeleteRepo(repositories)}>Apagar</button>
           </li>
+            ))
+          }
+                    
+          
         </ul>
 
         <div className="new">
